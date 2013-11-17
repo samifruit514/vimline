@@ -1,0 +1,32 @@
+#!/usr/bin/python -u
+import sys
+import re
+import os
+
+commands = []
+while True:
+    line = sys.stdin.readline()
+    if not line:
+        break
+    m = re.match(r'(?P<fn>.+?):(?P<ln>.+?):.+',line)
+    if m:
+        c = 'vim '+m.group('fn')+' +'+m.group('ln')
+        print c
+        commands.append(c)
+
+#sys.stdin.close()
+
+for c in commands:
+    print c
+    rt = os.system(c.strip() +" > /dev/tty < /dev/tty");
+    if rt != 0:
+        break;
+#for line in lines:
+#    m = re.match(r'(?P<fn>.+?):(?P<ln>.+?):.+',line)
+#    if m:
+#        c = 'vim '+m.group('fn')+' +'+m.group('ln')
+#        print c
+#        rt = os.system(c);
+#        if rt != 0:
+#            break;
+#
