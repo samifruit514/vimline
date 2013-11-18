@@ -14,19 +14,7 @@ while True:
         print c
         commands.append(c)
 
-#sys.stdin.close()
-
 for c in commands:
-    print c
     rt = os.system(c.strip() +" > /dev/tty < /dev/tty");
     if rt != 0:
         break;
-#for line in lines:
-#    m = re.match(r'(?P<fn>.+?):(?P<ln>.+?):.+',line)
-#    if m:
-#        c = 'vim '+m.group('fn')+' +'+m.group('ln')
-#        print c
-#        rt = os.system(c);
-#        if rt != 0:
-#            break;
-#
