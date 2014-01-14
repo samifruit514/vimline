@@ -8,10 +8,13 @@ while True:
     line = sys.stdin.readline()
     if not line:
         break
-    m = re.match(r'(?P<fn>.+?):(?P<ln>.+?):.+',line)
+    m = re.match(r'(?P<fn>.+?)($|:(?P<ln>.+?:))',line)
     if m:
-        c = 'vim '+m.group('fn')+' +'+m.group('ln')
-        print c
+        if m.group('ln'):
+            c = 'vim '+m.group('fn')+' +'+m.group('ln')
+        else:
+            c = 'vim '+m.group('fn')
+            
         commands.append(c)
 
 for c in commands:
